@@ -1,0 +1,45 @@
+// 此问题主要是浏览器关闭之后我们浏览器到底做了哪些操作。
+
+1、刷新浏览器
+  unbeforeunload  -->  onunload -->  onload 
+  事件运行机制是：解绑前，要解绑，重新加载页面。
+
+2、关闭浏览器
+  unbeforeunload  -->  onunload 
+
+3、两者的差别如何区分。
+思路：我们定义两个事件，根据两个时间差我们来确定是刷新还是关闭，当然ie  不兼容。
+
+function getXMLHttpRequest(){
+    var xhr;
+    if(window.ActiveObject){
+        xhr = new ActiveObject("Microsoft.XMLHTTP")
+    }else if(window.XMLHttpRequest){
+        xhr = new XMLHttpRequest()
+    } else {
+        xhr = null;
+    }
+    return xhr;
+}
+
+var beaginTime = 0, differTime = 0;
+window.onunload=function() { // 此处页面只能同步执行，异步此处不执行，IE 当然也不执行。
+    differTime = new Date().getTime() - beginTime;
+    if(differTime < 5) {
+        var xhr = getXMLHttpRequest();
+        xhr.open("post", url);
+        var data = JSON.stringfy();
+        xhr.setRequestHeader("Content-Type", "application/json;chartset=UTF-8")
+        xhr.send(data);
+    } else {
+        console.log("刷新")
+    }
+}
+
+window.onbeforeunload = function() {
+    beaginTime=new Date().getTime();
+}
+
+
+
+// ---------------------------- 2019 - 07 - 01 ----------------------------------//

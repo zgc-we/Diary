@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    span{
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        color: red;
+        border: 1px solid #000;
+        line-height: 20px;
+        text-align: center;
+        cursor: pointer;
+        margin-left: 50px;
+    }
+</style>
+<body>
+    <ul class="list">
+        <li>aaaa<span class="del">X</span><span class="add">+</span></li>
+        <li>bbbb<span class="del">X</span><span class="add">+</span></li>
+        <li>cccc<span class="del">X</span><span class="add">+</span></li>
+    </ul>
+</body>
+<script>
+    class List{
+        constructor(sel){
+            this.el = Array.from(document.querySelectorAll(sel));
+            let _this = this;
+            this.el.forEach(k => {
+                k.addEventListener('click', function (e) {
+                    if (e.target.className.indexOf('del')>-1) {
+                        _this.removeItem.call(_this, e.target);
+                    } 
+                    if (e.target.className.indexOf('add')>-1) {
+                        _this.addItem.call(_this, e.target)
+                    }
+                })
+            })
+        }
+
+        removeItem(target) {
+            let _this = this;
+            let findParten = function (node) {
+                let parent = node.parentNode;
+                let root = _this.el.find(k => k === parent);
+                if (root) {
+                    root.removeChild(node);
+                } else {
+                    findParten(parent);
+                }
+            }
+            findParten(target);
+        }
+
+        addItem(target) {
+            let _this = this;
+            let _li = target.parentNode;
+            let _ul = _li.parentNode;
+            let root = this.el.find(k => k === _ul);
+            root.appendChild(_li.cloneNode(true));
+        }
+    } 
+
+    var list = new List('.list');
+</script>
+</html>
