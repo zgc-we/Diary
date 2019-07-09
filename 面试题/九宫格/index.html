@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>九宫格实现,主要样式操作</title>
+</head>
+<body>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        ul{
+            width: 300px;
+            display: flex; /*flex布局 1 */ 
+            flex-wrap: wrap; /*一行展示  2*/
+        }
+        ul>li{
+            list-style: none;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 100px;
+            box-sizing: border-box; /*盒模型  3*/
+            margin-left: -1px; /*负数边距  4*/
+            margin-top: -1px;
+        }
+        ul>li:hover{
+            border: red 1px solid;
+            z-index: 1;
+        }
+    </style>
+    <div style="margin: 50px;">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+        </ul>
+    </div>
+</body>
+</html>
