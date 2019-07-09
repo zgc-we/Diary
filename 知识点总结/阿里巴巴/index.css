@@ -1,0 +1,74 @@
+/* 使用css实现一个持续的动画效果 */
+div {
+    animation: mymove 5s infinite;
+}
+@keyframes mymove {
+    from {top: 0px}
+    to {top: 200px}
+}
+
+@keyframes baifenhao {
+    0% {background: red}
+    25%{background: blue}
+    50%{background: green}
+    100%{background: orange}
+}
+/* 说明：
+* 值描述animation-name规定需要绑定到选择器的 keyframe 名称。
+* animation-duration规定完成动画所花费的时间，以秒或毫秒计。
+* animation-timing-function规定动画的速度曲线。
+* animation-delay规定在动画开始之前的延迟。
+* animation-iteration-count规定动画应该播放的次数。
+* animation-direction规定是否应该轮流反向播放动画。
+*/
+/* -------------------------------------------------------------- */
+
+
+
+/* 右边宽度固定，左边自适应 */
+/*方式一 flex*/
+.flex_box{display: flex}
+.flex_left{ width: 100px;height: 200px}
+.flex_right{flex:1}
+/*方式一 float*/
+.float_box{height: 200px; width: 100%}
+.float_left{float: left; width: 200px}
+.float_right{float: right; width: 100%;}
+/* table-cell，表格布局 */
+.container{
+    width:1000px;
+    height:400px;
+    border:1px solid red;
+    display:table;     
+}
+.left{
+    width:200px; 
+    height:100%;
+    background:gray;
+    display:table-cell;
+}
+.right{
+    height:100%;
+    background:green;
+    display: table-cell;
+}
+
+/*方法四： css计算宽度calc*/
+.container{
+    width:1000px;
+    height:400px;
+    border:1px solid red;
+}
+.left{
+    width:200px;
+    height:100%;
+    background:gray;
+    float:left;
+}
+.right{
+    height:100%;
+    background:green;
+    float:right;
+    width:calc(100% - 200px);
+}
+/* grid 网格化 */
