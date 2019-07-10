@@ -418,7 +418,7 @@
     4.svg
     5.第三方库polyfill
 
-    二十八、判断一个变量是否是数组
+二十八、判断一个变量是否是数组
     var a = []; 
     // 1.基于instanceof 
     a instanceof Array; 
